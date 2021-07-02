@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-
+require('dotenv').config()
 console.log("Hello World")
 
 staticPath = __dirname + "/public"
@@ -16,9 +16,9 @@ app.get('/', (req, res) => {
 
 app.get('/json', (req, res) => {
     obj = {"message" : "Hello json"}
-    if (process.env.MESSAGE_STYLE == "uppercase")
+    if (process.env['MESSAGE_STYLE'] == "uppercase")
         obj = {"message": "HELLO JSON"}
-    else if (process.env.MESSAGE_STYLE == "lowercase")
+    else if (process.env['MESSAGE_STYLE'] == "lowercase")
         obj = {"message": "Hello json"}
     res.json(obj)
 })
