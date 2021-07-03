@@ -12,6 +12,16 @@ app.use((req, res, next) => {
     next()
 })
 
+app.get('/now', (req, res, next) => {
+    req.time = new Date().toString()
+    next()
+},
+(req, res) => {
+    res.json(
+        {"time": req.time}
+    )
+})
+
 app.get('/', (req, res) => {
     // res.send("Hello Express")
     absolutePath = __dirname + "/views/index.html"
@@ -27,7 +37,11 @@ app.get('/json', (req, res) => {
     res.json(obj)
 })
 
-
+app.get('/:word/echo', (req,res) => {
+    res.json(
+        {'echo': req.params.word}
+    )
+})
 
 
 
